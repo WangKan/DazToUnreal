@@ -111,6 +111,10 @@ public:
 	UPROPERTY(config, EditAnywhere, Category = PluginSettings)
 		bool FixBoneRotationsOnImport;
 
+	/** Daz Studio puts the base bone rotations in a different place than Unreal expects them. Put them back. */
+	UPROPERTY(config, EditAnywhere, Category = PluginSettings, meta = (EditCondition = "FixBoneRotationsOnImport"))
+		bool CreateNewSkeletonOnImport;
+
 	/** Updates the bones to use a locale rotation.  This currently breaks animations coming from Daz Studio. */
 	UPROPERTY(config, EditAnywhere, Category = PluginSettings)
 		bool ZeroRootRotationOnImport;

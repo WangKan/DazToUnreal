@@ -1794,9 +1794,9 @@ UObject* FDazToUnrealModule::ImportFBXAsset(const FString& SourcePath, const FSt
 	 if (AssetType == DazAssetType::SkeletalMesh)
 	 {
 		  FbxFactory->ImportUI->bImportAsSkeletal = true;
-		  FbxFactory->ImportUI->Skeleton = Skeleton;
+		  FbxFactory->ImportUI->Skeleton = CachedSettings->FixBoneRotationsOnImport && CachedSettings->CreateNewSkeletonOnImport ? nullptr : Skeleton;
 		  FbxFactory->ImportUI->SkeletalMeshImportData->bImportMorphTargets = true;
-		  FbxFactory->ImportUI->bImportAnimations = false;
+		  FbxFactory->ImportUI->bImportAnimations = !CachedSettings->FixBoneRotationsOnImport;
 		  FbxFactory->ImportUI->SkeletalMeshImportData->bUseT0AsRefPose = CachedSettings->FrameZeroIsReferencePose;
 		  FbxFactory->ImportUI->SkeletalMeshImportData->bConvertScene = true;
 		  FbxFactory->ImportUI->SkeletalMeshImportData->bForceFrontXAxis = CachedSettings->ZeroRootRotationOnImport;
